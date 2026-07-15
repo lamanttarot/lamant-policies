@@ -5,7 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>개인정보처리방침 | 라망</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet" />
+  <script>
+    // 이 페이지는 앱(Linking.openURL, ?platform=app)과 웹 양쪽에서 동일 URL로 열리므로,
+    // 앱에서 열 때만 붙는 쿼리파라미터로 결제 관련 문구를 분기합니다(기본값=웹).
+    (function(){
+      if (new URLSearchParams(location.search).get('platform') === 'app') {
+        document.documentElement.classList.add('in-app');
+      }
+    })();
+  </script>
   <style>
+    .web-only-line{ display:inline; }
+    .in-app .web-only-line{ display:none !important; }
+    .app-only-line{ display:none; }
+    .in-app .app-only-line{ display:inline; }
     :root {
       --bg: #0e0b14;
       --surface: #16121f;
@@ -218,7 +231,7 @@
         <li><span class="highlight">별자리·타로 리딩 이용 시</span> — 생년월일, 출생시간, 출생도시(사용자가 직접 입력하는 텍스트이며, 위치 정보·GPS를 수집하지 않습니다). 별자리 차트 계산 목적으로만 사용됩니다.</li>
         <li><span class="highlight">일기·고민 기록 기능 이용 시</span> — 사용자가 작성한 일기 및 고민 내용. 본인만 열람할 수 있으며 다른 이용자나 제3자와 공유되지 않습니다.</li>
         <li><span class="highlight">서비스 이용 시</span> — 접속 로그, 서비스 이용 기록, 기기 정보</li>
-        <li><span class="highlight">결제 시</span> — Apple In-App Purchase를 통해 처리되며, 결제 정보는 저장되지 않습니다.</li>
+        <li><span class="highlight">결제 시</span> — <span class="web-only-line">웹에서는 TossPayments를 통해 처리되며, </span><span class="app-only-line">Apple In-App Purchase를 통해 처리되며, </span>결제 정보는 저장되지 않습니다.</li>
       </ul>
       <p>민감한 개인정보(주민등록번호, 금융정보 등)는 수집하지 않습니다.</p>
     </section>

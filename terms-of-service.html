@@ -5,7 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이용약관 | 라망</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet" />
+  <script>
+    // 이 페이지는 앱(Linking.openURL, ?platform=app)과 웹 양쪽에서 동일 URL로 열리므로,
+    // 앱에서 열 때만 붙는 쿼리파라미터로 결제/환불 문구를 분기합니다(기본값=웹).
+    (function(){
+      if (new URLSearchParams(location.search).get('platform') === 'app') {
+        document.documentElement.classList.add('in-app');
+      }
+    })();
+  </script>
   <style>
+    .web-only-line{ display:inline; }
+    .in-app .web-only-line{ display:none !important; }
     :root {
       --bg: #0e0b14;
       --surface: #16121f;
@@ -151,7 +162,7 @@
 
     <section>
       <h2>제 5조 (결제 및 환불)</h2>
-      <p>디지털 콘텐츠 결제는 앱스토어(Apple App Store)의 정책을 따르며, 환불 또한 해당 플랫폼 정책에 따릅니다.</p>
+      <p><span class="web-only-line">웹에서의 결제는 TossPayments를 통해 처리되며, </span>앱 내 결제는 앱스토어(Apple App Store 등)의 정책을 따르며, 환불 또한 해당 플랫폼 정책에 따릅니다.</p>
     </section>
 
     <section>
